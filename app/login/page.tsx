@@ -82,7 +82,7 @@ export default function LoginPage() {
             {isLoading ? "Entrando..." : "Entrar"}
           </motion.button>
 
-          <div className="mt-3 text-gray-400 cursor-pointer">
+          <div className="mt-3 text-gray-400 cursor-pointer text-center">
             Esqueceu sua senha?
           </div>
 

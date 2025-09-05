@@ -22,7 +22,7 @@ export default function RegisterPage() {
   const [erroTelefone, setErroTelefone] = useState<string | null>(null);
 
   const [equalPasswords, setEqualPasswords] = useState(true);
-  const [isPasswordValid] = useState(true); // plugue sua regra real aqui se quiser
+  const [isPasswordValid] = useState(true); 
   const [accepted, setAccepted] = useState(false);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-svh">
       <section className="relative mx-auto w-full px-4 sm:px-6 lg:px-8 py-4">
-        <div className="relative w-full h-64 sm:h-72 md:h-[420px] lg:h-[520px] rounded-2xl bg-gradient-to-r from-[#6D03F5] to-[#40028F] overflow-hidden z-0">
+        <div className="relative w-full h-64 sm:h-72 md:h-[420px] lg:h-[520px] rounded-2xl bg-gradient-to-b from-[#6D03F5] to-[#40028F] overflow-hidden z-0">
           <Image
             src={registerIcon}
             alt="Registrar"
