@@ -15,7 +15,7 @@ export default function AuthCard({
 }) {
   return (
     <div
-      className={`rounded-2xl  w-full max-w-[455px] mx-auto bg-white ${className}`}
+      className={`rounded-2xl   w-full max-w-[455px] mx-auto bg-white ${className}`}
     >
       <div className="p-6 md:p-8">
         {(title || subtitle) && (

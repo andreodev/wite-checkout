@@ -1,14 +1,14 @@
 "use client"
 import registerIcon from "@/assets/auth/register-icon.svg";
-import AuthCard from "@/components/AuthCard";
-import LabeledInput from "@/components/LabeledInput";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import PasswordField from "@/components/PasswordField";
-import PhoneInput from "@/components/PhoneInput";
-import Switch from "@/components/Switch";
 import Link from "next/link";
+import PhoneInput from "@/components/atoms/PhoneInput";
+import AuthCard from "@/components/molecules/AuthCard";
+import LabeledInput from "@/components/atoms/Input";
+import PasswordField from "@/components/atoms/InputPassword";
+import Switch from "@/components/atoms/Switch";
 
 export default function RegisterPage() {
   const [form, setForm] = useState({
@@ -44,7 +44,6 @@ export default function RegisterPage() {
 
     if (!equalPasswords) return;
 
-    // TODO: enviar dados
     console.log("OK", { ...form, telefone });
   }
 
@@ -175,7 +174,7 @@ export default function RegisterPage() {
                 <p className="text-sm text-slate-600">
                   Já tem uma conta?{" "}
                   <Link
-                    href="/"
+                    href="/login"
                     className="text-[#6D03F5] font-medium hover:underline"
                   >
                     Entrar

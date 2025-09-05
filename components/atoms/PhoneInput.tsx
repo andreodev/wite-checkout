@@ -1,4 +1,3 @@
-
 import { forwardRef } from "react";
 
 export type PhoneInputProps = {
@@ -74,9 +73,11 @@ const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
             className={`h-11 w-full rounded-2xl border bg-white pl-10 pr-3 text-sm
               outline-none transition
               focus:ring-1
-              ${hasError
-                ? "border-red-300 focus:border-red-400 focus:ring-red-400"
-                : "border-slate-200 focus:border-slate-400 focus:ring-slate-400"}
+              ${
+                hasError
+                  ? "border-red-300 focus:border-red-400 focus:ring-red-400"
+                  : "border-slate-200 focus:border-slate-400 focus:ring-slate-400"
+              }
               ${disabled ? "opacity-60 cursor-not-allowed" : ""}`}
           />
         </div>

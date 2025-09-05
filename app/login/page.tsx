@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import loginW from "@/assets/auth/login-icon.svg";
 import { motion } from "framer-motion";
-import AuthCard from "@/components/AuthCard";
-import LabeledInput from "@/components/LabeledInput";
-import PasswordField from "@/components/PasswordField";
-import AuthLayout from "@/components/AuthLayout";
+import AuthLayout from "@/components/organisms/Layouts/AuthLayout";
 import Image from "next/image";
-import Switch from "@/components/Switch";
+import AuthCard from "@/components/molecules/AuthCard";
+import LabeledInput from "@/components/atoms/Input";
+import PasswordField from "@/components/atoms/InputPassword";
+import Switch from "@/components/atoms/Switch";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -90,7 +90,7 @@ export default function LoginPage() {
             <p className="text-gray-400">
               Não tem uma conta?{" "}
               <a href="/register" className="text-[#6D03F5] font-medium">
-                Registre-se
+              Registre-se
               </a>
             </p>
           </div>
