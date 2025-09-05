@@ -18,3 +18,24 @@ export const PhoneIcon = () => {
       </svg>
     );
 }
+
+
+export const ArrowBottom = () => { 
+  return (
+    <svg
+      width="12"
+      height="7"
+      viewBox="0 0 12 7"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1.25 1.06104L5.78 5.5782L10.31 1.06104"
+        stroke="#3D4045"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+}

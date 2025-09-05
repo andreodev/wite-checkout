@@ -1,27 +1,19 @@
 "use client";
 import registerIcon from "@/assets/auth/register-icon.svg";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 import AuthCard from "@/components/molecules/AuthCard";
 import OtpInput from "@/components/atoms/OtpInput";
-
+import Button from "@/components/atoms/Button";
 
 export default function OtpEmail() {
   const [otp, setOtp] = useState("");
 
-
-  const [telefone, setTelefone] = useState("");
-  const [erroTelefone, setErroTelefone] = useState<string | null>(null);
-
-  const [equalPasswords, setEqualPasswords] = useState(true);
-  const [accepted, setAccepted] = useState(false);
-
-
-
-
+  const [equalPasswords] = useState(true);
+  const [accepted] = useState(false);
 
   return (
     <div className="min-h-svh">
@@ -45,13 +37,12 @@ export default function OtpEmail() {
           <AuthCard
             title="O código de confirmação foi enviado para"
             value={"exemplo123@gmail.com "}
-            subtitle="Verifique seu e-mail e preencha com o código enviado"
+            subtitle="Verifique seu e-mail e preencha  com o código enviado"
             font="text-[30px]"
             className="text-[#3D4045]"
           >
-            {/* Input de código de verificação */}
             <OtpInput value={otp} onChange={setOtp} length={6} />
-            <div className="text-center my-4">
+            <div className="text-center ">
               <p className="text-sm text-[#A0AEC0]">
                 Não recebeu o código?
                 <Link
@@ -62,19 +53,9 @@ export default function OtpEmail() {
                 </Link>
               </p>
             </div>
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-              }}
-              whileTap={{ scale: 0.95 }}
-              type="submit"
-              className={`w-full h-12  ${
-                !accepted ? "cursor-not-allowed" : "cursor-pointer"
-              } rounded-xl bg-[#6D03F5] text-white font-semibold shadow-sm transition duration-200 hover:bg-[#430397] active:scale-[0.98] disabled:opacity-60`}
-              disabled={!accepted || !equalPasswords}
-            >
+            <Button disabled={otp.length < 6} mtButton="large">
               Avançar
-            </motion.button>
+            </Button>
           </AuthCard>
         </div>
       </section>

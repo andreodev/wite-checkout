@@ -1,4 +1,7 @@
+import Image from "next/image";
 import { forwardRef } from "react";
+import { ArrowBottom } from "../Icons";
+import brasilIcon from "@/assets/flags/brasil.png";
 
 export type PhoneInputProps = {
   id?: string;
@@ -31,32 +34,26 @@ const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
 
     return (
       <div className={`space-y-2 ${className}`}>
-        {/* Label */}
-        <label htmlFor={id} className="text-sm font-medium text-slate-700">
+        <label htmlFor={id} className="text-sm font-medium text-slate-700 ml-1">
           {label}
-          {required && <span className="text-red-600"> *</span>}
-        </label>
+         </label>
 
-        {/* Input wrapper */}
-        <div className="relative">
-          {/* Ícone telefone (SVG inline Lucide) */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.81.37 1.6.72 2.34a2 2 0 0 1-.45 2.18L8.13 9.51a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.18-.45c.74.35 1.53.6 2.34.72a2 2 0 0 1 1.72 2z"
-            />
-          </svg>
-
-          {/* Input */}
+        <div className="flex items-center gap-2 mt-2">
+          <div className="flex items-center h-11 rounded-2xl border border-slate-200 bg-white px-3 ">
+            <span className="mr-2">
+              <Image
+                src={brasilIcon}
+                alt="BR"
+                width={24}
+                height={16}
+              />
+            </span>
+            <div></div>
+            <span className="font-medium text-slate-700">+55</span>
+            <span className="ml-2 text-[#3D4045]">
+              <ArrowBottom />
+            </span>
+          </div>
           <input
             ref={ref}
             id={id}
@@ -65,12 +62,30 @@ const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
             autoComplete="tel"
             placeholder={placeholder}
             value={value}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => {
+              const raw = e.target.value.replace(/\D/g, "");
+              let formatted = raw;
+              if (formatted.length > 0) {
+                formatted = formatted.replace(/(\d{2})(\d)/, "($1) $2");
+              }
+              if (formatted.length > 9) {
+                formatted = formatted.replace(
+                  /(\(\d{2}\) \d{5})(\d{4})/,
+                  "$1-$2"
+                );
+              } else if (formatted.length > 8) {
+                formatted = formatted.replace(
+                  /(\(\d{2}\) \d{4})(\d{4})/,
+                  "$1-$2"
+                );
+              }
+              onChange(formatted);
+            }}
             required={required}
             disabled={disabled}
             aria-invalid={hasError}
             aria-describedby={hasError ? `${id}-error` : undefined}
-            className={`h-11 w-full rounded-2xl border bg-white pl-10 pr-3 text-sm
+            className={`h-11 flex-1 rounded-2xl border bg-white px-4 text-sm
               outline-none transition
               focus:ring-1
               ${

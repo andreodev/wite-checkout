@@ -1,4 +1,11 @@
-import React from "react";
+type MarginProps = "none" | "small" | "medium" | "large";
+
+const marginMap: Record<MarginProps, string> = {
+  none: "my-0",
+  small: "my-5",
+  medium: "my-8",
+  large: "my-12",
+};
 
 export default function AuthCard({
   title,
@@ -7,32 +14,38 @@ export default function AuthCard({
   className = "",
   font = "",
   value = "",
+  mySubtitle = "medium",
+  colorSubtitle = "",
 }: {
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
-    font?: string
-  value?: string | number
+  font?: string;
+  value?: string | number;
+  mySubtitle?: MarginProps;
+  colorSubtitle?: string;
 }) {
+  const marginClass = marginMap[mySubtitle];
+
   return (
     <div
-      className={`rounded-2xl shadow-[#0000000D]   w-full max-w-[455px] mx-auto bg-white ${className}`}
+      className={`rounded-2xl drop-shadow-sm  w-full max-w-[455px] mx-auto bg-white ${className}`}
     >
-      <div className="p-6 md:p-8 ">
+      <div className="p-6 md:p-8">
         {(title || subtitle) && (
-          <div className="text-center mb-6">
+          <div className="text-center ">
             {title && (
               <h2
                 className={`${
                   font || "text-[45px]"
                 } font-medium text-[#3D4045]`}
               >
-                {title} <br /> {value}
+                {title} <br /> <p className="font-bold">{value}</p>
               </h2>
             )}
             {subtitle && (
-              <p className="text-gray-400 mt-12 max-w-sm">{subtitle}</p>
+              <p className={` ${marginClass} ${colorSubtitle} `}>{subtitle}</p>
             )}
           </div>
         )}

@@ -7,6 +7,7 @@ import Link from "next/link";
 
 import AuthCard from "@/components/molecules/AuthCard";
 import OtpInput from "@/components/atoms/OtpInput";
+import Button from "@/components/atoms/Button";
 
 export default function OtpPhone() {
   const [otp, setOtp] = useState("");
@@ -44,7 +45,7 @@ export default function OtpPhone() {
           >
             {/* Input de código de verificação */}
             <OtpInput value={otp} onChange={setOtp} length={6} />
-            <div className="text-center my-4">
+            <div className="text-center">
               <p className="text-sm text-[#A0AEC0]">
                 Não recebeu o código?
                 <Link
@@ -55,19 +56,12 @@ export default function OtpPhone() {
                 </Link>
               </p>
             </div>
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-              }}
-              whileTap={{ scale: 0.95 }}
-              type="submit"
-              className={`w-full h-12  ${
-                !accepted ? "cursor-not-allowed" : "cursor-pointer"
-              } rounded-xl bg-[#6D03F5] text-white font-semibold shadow-sm transition duration-200 hover:bg-[#430397] active:scale-[0.98] disabled:opacity-60`}
-              disabled={!accepted || !equalPasswords}
+           <Button
+              disabled={otp.length < 6 }
+              mtButton="large"
             >
               Avançar
-            </motion.button>
+            </Button>
           </AuthCard>
         </div>
       </section>

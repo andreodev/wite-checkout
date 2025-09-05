@@ -13,7 +13,7 @@ export default function LabeledInput({
 }: Props) {
   return (
     <div className="mb-5">
-      <label className="text-sm font-medium text-[#3D4045] mb-2 block">
+      <label className="text-sm font-medium text-[#3D4045] mb-2 ml-1 block">
         {label}
       </label>
       <input

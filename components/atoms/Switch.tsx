@@ -14,7 +14,7 @@ export default function Switch({
   return (
     <label
       htmlFor={id}
-      className="flex items-center select-none cursor-pointer gap-2"
+      className="flex  select-none cursor-pointer gap-2"
     >
       <input
         id={id}

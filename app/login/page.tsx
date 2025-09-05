@@ -37,12 +37,15 @@ export default function LoginPage() {
       }
     >
       <AuthCard
+        className="drop-shadow-none"
         title={
           <span className="bg-gradient-to-r from-[#6D03F5] to-[#40028F] bg-clip-text text-transparent">
             Entre na sua conta
           </span>
         }
         subtitle="Preencha com seu e-mail e senha"
+        mySubtitle="small"
+        colorSubtitle="text-[#A0AEC0]"
       >
         <form>
           <LabeledInput
@@ -89,8 +92,11 @@ export default function LoginPage() {
           <div className="text-center mt-4">
             <p className="text-gray-400">
               Não tem uma conta?{" "}
-              <a href="/register" className="text-[#6D03F5] font-medium">
-              Registre-se
+              <a
+                href="/register"
+                className="text-[#6D03F5] hover:text-[#411975] font-medium"
+              >
+                Registre-se
               </a>
             </p>
           </div>

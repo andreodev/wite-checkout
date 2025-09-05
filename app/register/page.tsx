@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import registerIcon from "@/assets/auth/register-icon.svg";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -22,7 +23,7 @@ export default function RegisterPage() {
   const [erroTelefone, setErroTelefone] = useState<string | null>(null);
 
   const [equalPasswords, setEqualPasswords] = useState(true);
-  const [isPasswordValid] = useState(true); 
+  const [isPasswordValid] = useState(true);
   const [accepted, setAccepted] = useState(false);
 
   useEffect(() => {
@@ -31,10 +32,15 @@ export default function RegisterPage() {
     );
   }, [form.senha, form.confirmarSenha]);
 
+  // Função de alteração do telefone
+  function handlePhoneChange(value: string) {
+    setTelefone(value);
+  }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    // validação simples de telefone
+    // Validação simples de telefone
     const onlyDigits = telefone.replace(/\D/g, "");
     if (onlyDigits.length < 10) {
       setErroTelefone("Telefone inválido");
@@ -75,7 +81,7 @@ export default function RegisterPage() {
             font="text-[30px]"
             className="text-[#3D4045]"
           >
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="space-y-5">
               <LabeledInput
                 label="Nome"
                 type="text"
@@ -100,10 +106,12 @@ export default function RegisterPage() {
 
               <PhoneInput
                 value={telefone}
-                onChange={setTelefone}
-                required
-                error={erroTelefone}
+                onChange={handlePhoneChange}
+                required={true}
               />
+              {erroTelefone && (
+                <p className="text-sm text-red-600 mt-2">{erroTelefone}</p>
+              )}
 
               <PasswordField
                 label="Senha"
@@ -113,15 +121,6 @@ export default function RegisterPage() {
                   setForm((f) => ({ ...f, senha: e.target.value }))
                 }
                 required
-                invalidHint={
-                  !isPasswordValid && (
-                    <p className="text-[13px] text-[#989898] mt-2">
-                      *A senha deve conter no mínimo 8 caracteres, incluindo
-                      maiúsculas, minúsculas, números e um destes (., -, !, @,
-                      #)
-                    </p>
-                  )
-                }
               />
 
               <PasswordField
@@ -132,6 +131,7 @@ export default function RegisterPage() {
                   setForm((f) => ({ ...f, confirmarSenha: e.target.value }))
                 }
                 required
+                invalidHint={null}
               />
               {!equalPasswords && (
                 <p className="text-[13px] text-red-600 -mt-3 mb-3">
@@ -139,16 +139,16 @@ export default function RegisterPage() {
                 </p>
               )}
 
-              <div className="mb-6 flex justify-center items-center">
+              <div className="mb-6 flex ">
                 <Switch
                   checked={accepted}
                   onChange={setAccepted}
                   label={
                     <span className="text-sm text-[#3D4045]">
-                      Li e aceito os{" "}
+                      Li e concordo com os{" "}
                       <button
                         type="button"
-                        className="text-[#6D03F5] hover:underline font-medium"
+                        className="text-[#6D03F5] hover:underline font-semibold"
                       >
                         Termos de Uso
                       </button>
@@ -170,12 +170,12 @@ export default function RegisterPage() {
                 Criar conta
               </motion.button>
 
-              <div className="text-center mt-4">
+              <div className="text-center text-sm">
                 <p className="text-sm text-slate-600">
                   Já tem uma conta?{" "}
                   <Link
                     href="/login"
-                    className="text-[#6D03F5] font-medium hover:underline"
+                    className="text-[#6D03F5]  hover:underline font-semibold"
                   >
                     Entrar
                   </Link>

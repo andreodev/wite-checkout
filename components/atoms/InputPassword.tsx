@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { Eye, EyeClosed } from "lucide-react";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -8,10 +10,20 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
 
 export default function PasswordField({ label, invalidHint, ...rest }: Props) {
   const [show, setShow] = useState(false);
+  const [isRegisterPage, setIsRegisterPage] = useState(false);
+
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      window.location.href.includes("/register")
+    ) {
+      setIsRegisterPage(true);
+    }
+  }, []); 
 
   return (
     <div className="mb-5">
-      <label className="text-sm font-medium text-[#3D4045] mb-2 block">
+      <label className="text-sm font-medium text-[#3D4045] mb-2 block ml-1">
         {label}
       </label>
       <div className="relative">
@@ -33,6 +45,15 @@ export default function PasswordField({ label, invalidHint, ...rest }: Props) {
           )}
         </button>
       </div>
+
+      {isRegisterPage && label === "Senha" && (
+        <p className="text-[12px] font-medium text-[#989898] mt-5 break-normal">
+          *A senha deve conter no mínimo 8 caracteres, incluindo letras
+          maiúsculas, minúsculas, números e pelo menos um desses caracteres
+          especiais (., -, !, @, #)
+        </p>
+      )}
+
       {invalidHint}
     </div>
   );
